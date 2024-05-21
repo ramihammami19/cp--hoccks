@@ -1,44 +1,55 @@
-import "./film.css"
-function Film({e}) {
-  console.log(e);
+import "./film.css";
+import { useNavigate } from "react-router-dom";
 
-    
-
+function Film({ film }) {
+const navigate = useNavigate()
   return (
-<div className="wrapper">
-      <div className="main_card">
-        <div className="card_left">
-          <div className="card_datails">
-            <h1>{e.title}</h1>
-            <div className="card_cat">
-              <p className="PG">PG - 13</p>
-              <p className="year">{e.date}</p>
-              <p className="genre">{e.type}</p>
-              <p className="time">{e.time}</p>
+    <div className="min-h-screen grid place-items-center font-mono bg-gray-900">
+      <div className="bg-white rounded-md bg-gray-800 shadow-lg">
+        <div className="md:flex px-4 leading-none max-w-4xl">
+          <div className="flex-none ">
+            <img
+              src={film.ph}
+              alt="pic"
+              className="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 shadow-lg"
+            />
+          </div>
+
+          <div className="flex-col text-black-300">
+            <p className="pt-4 text-2xl font-bold">{film.title}</p>
+            <hr className="hr-text" data-content="" />
+            <div className="text-md flex justify-between px-4 my-2">
+              <span className="font-bold">{film.time} | {film.type}</span>
+              <span className="font-bold"></span>
             </div>
-            <p className="disc">{e.description}</p>
-            <a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a>
-            <div className="social-btn">
-              {/* WATCH TRAILER */}
-              
-              {/* USERS RATINGS */}
+         
+            <p className="flex text-md px-4 my-2">
+              {film.ra}
              
+            </p>
+
+            <div className="text-xs">
+              <button
+              onClick={()=>{
+                navigate('/film/'+film.id)
+              }}
+                type="button"
+                className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline"
+              >
+                TRAILER
+              </button>
+
+            
             </div>
           </div>
         </div>
-        <div className="card_right">
-          <div className="img_container">
-            <img src={e.ph} alt="" />
-            
-          </div>
-          <div className="play_btn">
-            <a href="https://www.imdb.com/title/tt4912910/" target="_blank">
-              <i className="fas fa-play-circle"></i>
-            </a>
-          </div>
+        <div className="flex justify-between items-center px-4 mb-4 w-full">
+       
+         
         </div>
       </div>
-    </div>  )
+    </div>
+  );
 }
 
-export default Film
+export default Film;

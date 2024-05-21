@@ -1,13 +1,23 @@
-import Film from "./Film";
+// src/FilmList.jsx
+import React from 'react';
+import Film from './Film';
 
-function FilmList({films}) {
+const FilmList = ({ films }) => {
   return (
-    <div style={{display : "flex",flexDirection:"column"}}>
-      {films?.map((e, i) => {
-        return <Film key={i} e={e} />;
-      })}
+    <div>
+      {films.length > 0 ? (
+        <ul>
+          {films.map((film) => (
+            <li key={film.id}>
+              <Film film={film} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No films found</p>
+      )}
     </div>
   );
-}
+};
 
 export default FilmList;
